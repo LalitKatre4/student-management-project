@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+    <style>
+        /* Recent Activity Card */
+
+        .activity-card{
+
+            background: linear-gradient(
+                135deg,
+                rgba(15,23,42,0.95),
+                rgba(30,41,59,0.92)
+            );
+
+            border-radius:20px;
+
+            border:1px solid rgba(255,255,255,0.08);
+
+            backdrop-filter: blur(12px);
+
+            color:white;
+
+            box-shadow:0 10px 30px rgba(0,0,0,0.35);
+        }
+
+        /* Heading */
+
+        .activity-card h3{
+
+            color:white;
+
+            font-weight:bold;
+
+            margin-bottom:20px;
+        }
+
+        /* List */
+
+        .activity-card ul{
+
+            list-style:none;
+
+            padding:0;
+        }
+
+        /* List Items */
+
+        .activity-card ul li{
+
+            background: rgba(255,255,255,0.06);
+
+            padding:15px;
+
+            margin-bottom:12px;
+
+            border-radius:12px;
+
+            transition:0.3s;
+
+            border-left:4px solid #3b82f6;
+        }
+
+        /* Hover Effect */
+
+        .activity-card ul li:hover{
+
+            background: rgba(255,255,255,0.12);
+
+            transform:translateX(5px);
+        }
+    </style>
+</head>
+<div class="container-fluid">
+
+    <div class="row">
+
+        <!-- SIDEBAR -->
+
+        <div class="col-md-2 bg-dark text-white vh-100 p-4">
+
+            <h2 class="mb-4">Teacher Panel</h2>
+
+            <ul class="nav flex-column">
+
+                <li class="nav-item mb-3">
+                    <a href="#"
+                       class="nav-link text-white">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li class="nav-item mb-3">
+                    <a href="/attendance/"
+                       class="nav-link text-white">
+                        Manage Attendance
+                    </a>
+                </li>
+
+                <li class="nav-item mb-3">
+                    <a href="/marks/"
+                       class="nav-link text-white">
+                        Upload Marks
+                    </a>
+                </li>
+
+                <li class="nav-item mb-3">
+                    <a href="/students/"
+                       class="nav-link text-white">
+                        Students
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- CONTENT -->
+
+        <div class="col-md-10 p-4">
+
+            <h4 style="color:orange;font-weight:bold;">
+                    Teacher Dashboard
+                </h4>
+
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <div class="card bg-primary text-white p-4 shadow">
+
+                        <h3>{{ total_students }}</h3>
+
+                        <h5>Total Students</h5>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="card bg-success text-white p-4 shadow">
+
+                        <h3>{{ attendance_percentage }}%</h3>
+
+                        <h5>Attendance</h5>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="card bg-warning text-white p-4 shadow">
+
+                        <h3>{{ pending_results }}</h3>
+
+                        <h5>Pending Results</h5>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card mt-5 shadow p-4 activity-card">
+
+                <h3>Recent Activities</h3>
+
+                <ul>
+
+                    <li>
+                        Attendance updated
+                    </li>
+
+                    <li>
+                        MCA marks uploaded
+                    </li>
+
+                    <li>
+                        New student added
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

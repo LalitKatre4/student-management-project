@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card shadow p-4">
+
+    <h2>Edit Attendance</h2>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input type="number"
+               name="total"
+               value="{{ attendance.total_classes }}"
+               class="form-control mb-3">
+
+        <input type="number"
+               name="attended"
+               value="{{ attendance.attended_classes }}"
+               class="form-control mb-3">
+
+        <input type="text"
+               name="status"
+               value="{{ attendance.status }}"
+               class="form-control mb-3">
+
+        <button class="btn btn-success">
+            Update Attendance
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

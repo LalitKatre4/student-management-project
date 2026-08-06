@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    table{
+            width:100%;
+            border-radius:15px;
+            overflow:hidden;
+            background: rgba(255,255,255,0.08);
+            color:white;
+        }
+
+    /* Upload Attendance Card */
+    .upload-card{
+        background: linear-gradient(135deg, #2563eb, #1e3a8a);
+        color: white;
+        border-radius: 15px;
+    }
+
+    /* Attendance Records Card */
+    .record-card{
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        color: white;
+        border-radius: 15px;
+    }
+
+    /* Table text color */
+    .record-card table{
+        color: white;
+    }
+
+    /* Table heading */
+    .record-card th{
+        background-color: #16213e;
+        color: white;
+    }
+    .table td{
+            background: rgba(255,255,255,0.08) !important;
+            color: white !important;
+            border-color: rgba(255,255,255,0.1) !important;
+        }
+
+        .table th{
+            background: rgba(15,23,42,0.95) !important;
+            color: white !important;
+            border: none !important;
+        }
+
+        .table tr:hover td{
+            background: rgba(255,255,255,0.15) !important;
+            transition:0.3s;
+        }
+
+</style>
+
+<div class="container mt-5">
+
+    <div class="row">
+
+        <!-- FORM -->
+
+        <div class="col-md-4">
+
+            <!-- Added upload-card class -->
+            <div class="card shadow p-4 upload-card">
+
+                <h3 class="mb-4">
+                    Upload Attendance
+                </h3>
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <label>
+                        Student
+                    </label>
+
+                   <select name="student"
+                           class="form-select mb-3">
+
+                        <option value="">
+                            Select Student
+                        </option>
+
+                        {% for student in students %}
+
+                         <option value="{{ student.id }}">
+                             {{ student.name }}
+                         </option>
+
+                         {% endfor %}
+
+                    </select>
+
+                    <label>From Date</label>
+
+                    <input type="date"
+                           name="from_date"
+                           class="form-control mb-3">
+
+                    <label>To Date</label>
+
+                    <input type="date"
+                           name="to_date"
+                           class="form-control">
+
+                    <label>Total Classes</label>
+
+                    <input type="number"
+                           name="total_classes"
+                           class="form-control mb-3">
+
+                    <label>Attended Classes</label>
+
+                    <input type="number"
+                           name="attended_classes"
+                           class="form-control mb-3">
+
+                    <label>Status</label>
+
+                    <select name="status"
+                            class="form-control mb-3">
+
+                        <option>Present</option>
+                        <option>Absent</option>
+
+                    </select>
+
+                    <button class="btn btn-success w-100">
+                        Save Attendance
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- TABLE -->
+
+        <div class="col-md-8">
+
+            <!-- Added record-card class -->
+            <div class="card shadow p-4 record-card">
+
+                <h3 class="mb-4">
+                    Attendance Records
+                </h3>
+
+                <table class="table table-bordered table-striped">
+
+                    <tr>
+                        <th>Student</th>
+                        <th>From Date</th>
+                        <th>To Date</th>
+                        <th>Total Classes</th>
+
+                        <th>Status</th>
+                        <th>Attendance %</th>
+
+
+                        <th>Action</th>
+
+                    </tr>
+
+                    {% for a in attendance_data %}
+
+                    <tr>
+
+                        <td>{{ a.student.name }}</td>
+                        <td>{{ a.from_date }}</td>
+                        <td>{{ a.to_date }}</td>
+                        <td>{{ a.total_classes }}</td>
+
+                        <td>{{ a.status }}</td>
+                        <td>
+                            {% widthratio a.attended_classes a.total_classes 100 %}%
+                        </td>
+                        <td>
+                            <a href="/edit-attendance/{{ a.id }}/"
+                               class="btn btn-warning btn-sm">
+                                Edit
+                            </a>
+
+                            <a href="/delete-attendance/{{ a.id }}/"
+                               class="btn btn-danger btn-sm">
+                                Delete
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

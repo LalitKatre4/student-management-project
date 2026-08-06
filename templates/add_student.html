@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    .student-form-card{
+
+        background: linear-gradient(
+            135deg,
+            rgba(30,41,59,0.95),
+            rgba(51,65,85,0.90)
+        );
+
+        backdrop-filter: blur(15px);
+
+        border-radius:25px;
+
+        padding:40px;
+
+        border:1px solid rgba(255,255,255,0.1);
+
+        box-shadow:
+            0 10px 35px rgba(0,0,0,0.35);
+
+        color:white;
+
+        max-width:900px;
+
+        margin:auto;
+    }
+
+    .student-form-card h3{
+        font-size:40px;
+        font-weight:bold;
+        margin-bottom:30px;
+        text-align:center;
+        color:#ffffff;
+    }
+
+    /* Labels */
+
+    .student-form-card label{
+        font-weight:600;
+        margin-bottom:8px;
+        color:#e2e8f0;
+    }
+
+    /* Inputs */
+
+    .student-form-card input,
+    .student-form-card textarea,
+    .student-form-card select{
+
+        width:100%;
+
+        background: rgba(255,255,255,0.08);
+
+        border:1px solid rgba(255,255,255,0.12);
+
+        color:white;
+
+        padding:12px 15px;
+
+        border-radius:12px;
+
+        margin-bottom:20px;
+
+        outline:none;
+
+        transition:0.3s;
+    }
+
+    /* Focus Effect */
+
+    .student-form-card input:focus,
+    .student-form-card textarea:focus,
+    .student-form-card select:focus{
+
+        border-color:#3b82f6;
+
+        box-shadow:0 0 10px rgba(59,130,246,0.5);
+
+        background: rgba(255,255,255,0.12);
+    }
+
+    /* File Upload */
+
+    .student-form-card input[type="file"]{
+        padding:10px;
+        background:transparent;
+    }
+
+    /* Button */
+
+    .save-btn{
+
+        background: linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+        border:none;
+
+        padding:14px;
+
+        width:100%;
+
+        color:white;
+
+        font-size:18px;
+
+        font-weight:bold;
+
+        border-radius:14px;
+
+        transition:0.3s;
+    }
+
+    .save-btn:hover{
+
+        transform:translateY(-3px);
+
+        box-shadow:0 10px 25px rgba(37,99,235,0.4);
+    }
+    /* Dropdown Options Fix */
+
+    .student-form-card select option{
+        background:#1e293b;
+        color:white;
+    }
+    .student-form-card select{
+        background:#334155;
+        color:white;
+    }
+
+</style>
+
+<div class="container mt-5">
+
+    <div class="student-form-card">
+
+        <h3>
+            Add Student
+        </h3>
+
+        <form method="POST"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit"
+                    class="save-btn">
+                Save Student
+            </button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

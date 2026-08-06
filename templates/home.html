@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+
+        <h2 style="color: orange; font-weight: bold; text-align: center;">
+            Advanced Student Management System
+        </h2>
+
+    </div>
+    <div class="row">
+
+        <!-- ADMIN -->
+
+        <div class="col-md-4">
+            <div class="card shadow-lg p-4 text-center">
+
+                <h2>Admin</h2>
+
+                <p>
+                    Manage complete system
+                </p>
+
+                <a href="/admin-login/"
+                   class="btn btn-dark">
+                    Admin Login
+                </a>
+
+            </div>
+        </div>
+
+        <!-- TEACHER -->
+
+        <div class="col-md-4">
+            <div class="card shadow-lg p-4 text-center">
+
+                <h2>Teacher</h2>
+
+                <p>
+                    Manage attendance & marks
+                </p>
+
+                <a href="/teacher-login/"
+                   class="btn btn-success">
+                    Teacher Login
+                </a>
+
+            </div>
+        </div>
+
+        <!-- STUDENT -->
+
+        <div class="col-md-4">
+            <div class="card shadow-lg p-4 text-center">
+
+                <h2>Student</h2>
+
+                <p>
+                    View marks & attendance
+                </p>
+
+                <a href="/student-login/"
+                   class="btn btn-primary">
+                    Student Login
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

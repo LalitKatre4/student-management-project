@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between mb-3">
+
+    <h2 style="
+    color:#87CEEB;
+    font-weight:800;
+    text-shadow:1px 1px 2px rgba(255,255,255,0.5);
+">
+    Students
+</h2>
+
+    <a href="/add-student/" class="btn btn-success">
+        Add Student
+    </a>
+
+</div>
+<form method="GET" class="mb-3">
+
+    <input type="text"
+           name="q"
+           class="form-control"
+           placeholder="Search Student by Name or Course">
+
+</form>
+<table class="table table-bordered table-striped shadow">
+
+    <tr>
+        <th>Photo</th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Course</th>
+        <th>Contact</th>
+        <th>Action</th>
+    </tr>
+
+    {% for student in students %}
+
+    <tr>
+        <td>
+
+            {% if student.photo %}
+
+            <img src="{{ student.photo.url }}"
+                width="60"
+                height="60"
+                style="border-radius:50%;">
+
+            {% endif %}
+
+        </td>
+
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.gender }}</td>
+        <td>{{ student.course }}</td>
+        <td>{{ student.contact }}</td>
+
+        <td>
+            <a href="/delete/{{ student.id }}/"
+               class="btn btn-danger btn-sm">
+                Delete
+            </a>
+     </td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

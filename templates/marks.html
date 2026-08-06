@@ -1,0 +1,317 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    /* Main Card */
+
+    .marks-card{
+
+        background: linear-gradient(
+            135deg,
+            rgba(15,23,42,0.95),
+            rgba(30,41,59,0.92)
+        );
+
+        backdrop-filter: blur(15px);
+
+        border-radius:25px;
+
+        padding:40px;
+
+        border:1px solid rgba(255,255,255,0.08);
+
+        box-shadow:0 10px 40px rgba(0,0,0,0.35);
+
+        color:white;
+    }
+
+    /* Heading */
+
+    .marks-card h2,
+    .marks-card h3{
+
+        font-weight:bold;
+
+        color:white;
+
+        margin-bottom:25px;
+    }
+
+    /* Inputs */
+
+    .marks-card input,
+    .marks-card select{
+
+        width:100%;
+
+        background: rgba(255,255,255,0.08);
+
+        border:1px solid rgba(255,255,255,0.12);
+
+        color:white;
+
+        padding:14px;
+
+        border-radius:12px;
+
+        margin-bottom:18px;
+
+        outline:none;
+
+        transition:0.3s;
+    }
+
+    /* Placeholder */
+
+    .marks-card input::placeholder{
+        color:#cbd5e1;
+    }
+
+    /* Focus */
+
+    .marks-card input:focus,
+    .marks-card select:focus{
+
+        border-color:#3b82f6;
+
+        box-shadow:0 0 12px rgba(59,130,246,0.4);
+
+        background: rgba(255,255,255,0.12);
+    }
+
+    /* Dropdown Options */
+
+    .marks-card select option{
+
+        background:#1e293b;
+
+        color:white;
+    }
+
+    /* Save Button */
+
+    .save-btn{
+
+        background: linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+        border:none;
+
+        padding:14px 25px;
+
+        border-radius:12px;
+
+        color:white;
+
+        font-weight:bold;
+
+        transition:0.3s;
+    }
+
+    .save-btn:hover{
+
+        transform:translateY(-3px);
+
+        box-shadow:0 10px 25px rgba(37,99,235,0.4);
+    }
+
+    /* Divider */
+
+    hr{
+        border-color: rgba(255,255,255,0.1);
+    }
+
+    /* Table */
+
+    table{
+
+        width:100%;
+
+        border-radius:18px;
+
+        overflow:hidden;
+
+        color:white;
+
+        background: rgba(255,255,255,0.05);
+    }
+
+    th{
+
+        background: rgba(15,23,42,0.95);
+
+        color:white;
+
+        padding:16px !important;
+
+        border:none !important;
+
+        font-size:16px;
+    }
+
+    td{
+
+        background: rgba(255,255,255,0.04);
+
+        color:white !important;
+
+        padding:14px !important;
+
+        border-color: rgba(255,255,255,0.08) !important;
+    }
+
+    tr:hover td{
+
+        background: rgba(255,255,255,0.12);
+
+        transition:0.3s;
+    }
+
+    /* Buttons */
+
+    .btn-warning{
+
+        border:none;
+
+        font-weight:600;
+    }
+
+    .btn-danger{
+
+        border:none;
+
+        font-weight:600;
+    }
+    .table td{
+            background: rgba(255,255,255,0.08) !important;
+            color: white !important;
+            border-color: rgba(255,255,255,0.1) !important;
+        }
+
+        .table th{
+            background: rgba(15,23,42,0.95) !important;
+            color: white !important;
+            border: none !important;
+        }
+
+        .table tr:hover td{
+            background: rgba(255,255,255,0.15) !important;
+            transition:0.3s;
+        }
+
+</style>
+
+<div class="container mt-5">
+
+    <div class="marks-card">
+
+        <h2>
+            Upload Marks
+        </h2>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <select name="student"
+                    class="form-select">
+
+                {% for student in students %}
+
+                <option value="{{ student.id }}">
+                    {{ student.name }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+            <input type="text"
+                   name="subject"
+                   class="form-control"
+                   placeholder="Enter Subject Name">
+
+            <input type="number"
+                   name="marks"
+                   class="form-control"
+                   placeholder="Enter Obtained Marks">
+
+            <input type="number"
+                   name="total_marks"
+                   class="form-control"
+                   placeholder="Enter Total Marks">
+
+            <button class="save-btn">
+                Save Marks
+            </button>
+
+        </form>
+
+        <hr class="my-5">
+
+        <h3>
+            Marks Records
+        </h3>
+
+        <table class="table table-bordered">
+
+            <tr>
+
+                <th>Student</th>
+
+                <th>Subject</th>
+
+                <th>Marks</th>
+
+                <th>Total Marks</th>
+
+                <th>Action</th>
+
+            </tr>
+
+            {% for m in marks_data %}
+
+            <tr>
+
+                <td>{{ m.student.name }}</td>
+
+                <td>{{ m.subject }}</td>
+
+                <td>{{ m.marks }}</td>
+
+                <td>{{ m.total_marks }}</td>
+
+                <td>
+
+                    <a href="/edit-marks/{{ m.id }}/"
+                       class="btn btn-warning btn-sm">
+
+                        Edit
+
+                    </a>
+
+                    <a href="/delete-marks/{{ m.id }}/"
+                       class="btn btn-danger btn-sm">
+
+                        Delete
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
