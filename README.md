@@ -101,15 +101,33 @@ python manage.py runserver
 
 ## 📸 Screenshots
 
-Add screenshots of
+## Admin Dashboard
 
-- Home Page
-- Admin Dashboard
-- Student Dashboard
-- Attendance
-- Marks
-- Fees
-- Report Card PDF
+![Admin Dashboard](screenshots/admin_dashboard.png)
+
+## Student Dashboard
+
+![Student Dashboard](screenshots/student_dashboard.png)
+
+## Add Student
+
+![Add Student](screenshots/add_student.png)
+
+## Attendance
+
+![Attendance](screenshots/attendance.png)
+
+## Marks
+
+![Marks](screenshots/marks.png)
+
+## Fees Management
+
+![Fees Management](screenshots/fees.png)
+
+## Report Card PDF
+
+![Report Card](screenshots/report_card.png)
 
 ---
 
