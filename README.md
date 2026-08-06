@@ -62,7 +62,7 @@ sms_project/
 ### Clone Repository
 
 ```bash
-git clone https://github.com/LalitKatre4/student-management-system-project.git
+git clone https://github.com/LalitKatre4/student-management-project.git
 ```
 
 ### Go to Project
