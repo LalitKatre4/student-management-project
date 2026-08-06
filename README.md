@@ -125,15 +125,11 @@ python manage.py runserver
 
 ![Fees Management](screenshots/fees.png)
 
-## Report Card PDF
-
-![Report Card](screenshots/report_card.png)
-
 ---
 
 ## 👨‍💻 Author
 
-**Lalit Katre**
+Lalit Katre
 
 GitHub:
 https://github.com/LalitKatre4
